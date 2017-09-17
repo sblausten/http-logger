@@ -1,3 +1,5 @@
+require 'net/http'
+require 'uri'
 
 class Request
   def get_headers(url)
