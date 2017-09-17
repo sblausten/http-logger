@@ -1,5 +1,6 @@
 require './src/request.rb'
 require './src/writer.rb'
+require './src/input.rb'
 
 require 'webmock/rspec'
 

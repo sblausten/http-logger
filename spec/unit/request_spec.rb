@@ -4,7 +4,7 @@ describe 'get_headers' do
     @request = Request.new
     WebMock.disable_net_connect!
   end
-  context 'valud url' do
+  context 'valid url' do
     it 'returns header response in hash when passed valid url' do
       valid_url = 'http://google.com'
       expected_headers = {
