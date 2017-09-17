@@ -1,15 +1,27 @@
 ## BBC tech test
-The task is to write a program that makes http (and https) requests to specified URLs and to report on certain properties of the responses it receives; see requirements below.
+This program makes http (and https) requests to specified URLs and reports on certain properties of the responses it receives; see requirements below.
 
-Please write your code in Java, Ruby or Python for a Linux/Unix platform. We will accept other languages but please check with us first.
+### To run locally:
+```bash
+git clone https://github.com/sblausten/http-logger.git
+cd http-logger
+bundle install
+ruby src/main.rb
+```
 
-Your code should be sent to us as a zipped tar archive (.tgz file). We would like to see your version control commit history so please include .git or .svn directory structure in the tar archive. We prefer to see small incremental commits so the order in which your solution is developed is apparent.
+Enter a complete url including the protocol and press enter.
 
-Please provide instructions so that we can install, test and run your program.
+Type Ctr+C to exit the program.
 
-If we invite you for an interview we will ask you to modify your program to meet an additional requirement or make other improvements.
+### To run all tests:
+Having cloned the repository and run bundle install as detailed above,
+```bash
+rspec
+```
 
-## Main Requirements
+Tests do not require internet access.
+
+### Main Requirements (Implemented)
 • The program is invoked from the command line and it consumes its input from stdin.
 • The program output is written to stdout and errors are written to stderr.
 • Input format is a newline separated list of public web addresses, such as
@@ -49,15 +61,7 @@ http://site.mockito.org/
 • The program should have a good set of unit tests.
 • It must be possible to perform a test run, consisting of all unit tests, without accessing the Internet.
 
-### Assessment criteria
-We will assess your submission based on the following
-• The quality of instructions for installing, running and testing the program.
-• How well the program meets the requirements.
-• The structure and clarity of your code and tests.
-• Evidence that you have taken a test driven approach during development.
-
-### Additional Requirement
-If you would like to show your skills a little more and you have sufficient time we invite you to make your program meet the following additional requirement.
+### Additional Requirement (Not implemented)
 After emitting the stream of JSON documents an additional JSON document should be output. This final document summarises all the results providing a count of responses grouped by status code. Requests that receive no response (e.g. timeout or malformed url) may be ignored.
 
 The summary document should be something like this (i.e. array of objects):
