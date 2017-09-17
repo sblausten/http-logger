@@ -1,7 +1,5 @@
 
 class Request
-
-
   def get_headers(url)
     response = make_request(url)
     return invalid_url_response(url) if response == :invalid_url
@@ -13,7 +11,7 @@ class Request
   def make_request(url)
     Net::HTTP.get_response(get_uri(url))
   rescue => e
-    STDERR.puts e
+    $stderr.puts e
     :invalid_url
   end
 
@@ -29,17 +27,17 @@ class Request
       Content_length: response.content_length,
       Date: get_date(response)
     }
-    rescue => e
-      STDERR.puts e
+  rescue => e
+    $stderr.puts e
   end
 
   def get_date(res)
-    res.each_header { |key, value|
+    res.each_header do |key, value|
       return value if key == 'date'
-    }
+    end
   end
 
   def invalid_url_response(invalid_url)
-    {Url: invalid_url, Error: 'invalid url'}
+    { Url: invalid_url, Error: 'invalid url' }
   end
 end

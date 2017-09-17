@@ -53,5 +53,10 @@ describe 'get_headers' do
       stub_request(:get, timeout_url).to_timeout
       expect(@request.get_headers(timeout_url)).to eq(expected)
     end
+    it 'returns invalid request hash when passed url that times out' do
+      timeout_url = 'https://httpstat.us/522'
+      stub_request(:get, timeout_url).to_timeout
+      expect { @request.get_headers(timeout_url) }.to output("execution expired\n").to_stderr
+    end
   end
 end
