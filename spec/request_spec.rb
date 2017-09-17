@@ -26,4 +26,10 @@ describe 'get_headers' do
     expected = { Url: invalid_url, Error: 'invalid url' }
     expect(@request.get_headers(invalid_url)).to eq(expected)
   end
+  it 'returns invalid request hash when passed url that times out' do
+    timeout_url = 'https://httpstat.us/522'
+    expected = { Url: timeout_url, Error: 'invalid url' }
+    stub_request(:get, timeout_url).to_timeout
+    expect(@request.get_headers(timeout_url)).to eq(expected)
+  end
 end
