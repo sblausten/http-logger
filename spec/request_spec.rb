@@ -21,4 +21,9 @@ describe 'get_headers' do
     expect(@request.get_headers(valid_url)).to eq(expected_headers)
     expect(stub).to have_been_requested
   end
+  it 'returns invalid request hash when passed invalid url' do
+    invalid_url = 'bad://address'
+    expected = { Url: invalid_url, Error: 'invalid url' }
+    expect(@request.get_headers(invalid_url)).to eq(expected)
+  end
 end
