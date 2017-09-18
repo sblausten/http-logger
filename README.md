@@ -21,6 +21,32 @@ rspec
 
 Tests do not require internet access.
 
+### Approach and challenges
+I used an inside out TDD approach to this program, starting with the core
+functionality around the requests and leaving the interface till later.
+
+I wanted to separate the I/O functionality from the main request functionality
+so that the program could easily be modified to change the I/O. This led me to
+design a writer and input class with methods appropriately named for their
+implementation. In a more complex program it would probably be preferable to use
+different class implementations of the same interface instead of an overly
+specific single interface for this.
+
+I used a script (main.rb) to initialise all my classes and call their interfaces
+from one place.
+
+It was not possible to fully test the program due to use of the command line
+and the way I had designed the main script to initialise everything on load
+which meant that I could not always find a way to mock and stub STDIN and STDOUT
+effectively.
+
+I used Webmock to stub http requests so that tests were not reliant on making
+expensive calls to websites and could be run in any environment.
+
+Otherwise I used that standard net/http library for requests as this was
+sufficient for my needs and I did not want to rely on an external library
+unnecessarily.
+
 ### Main Requirements (Implemented)
 - The program is invoked from the command line and it consumes its input from stdin.
 - The program output is written to stdout and errors are written to stderr.
